@@ -1,0 +1,116 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>标题</title>
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<link rel="stylesheet" href="reset.css">
+	<style>
+		#box{
+			width: 279px;
+			height: 696px;
+			background: url(qq.jpg) 0 0 no-repeat;
+			position: absolute;
+			top: 50px;
+			right: 300px;
+			border: 1px solid #ccc;
+		}
+		#tx{
+			width: 57px;
+			height: 57px;
+			position: absolute;
+			left: 10px;
+			top: 43px;
+			border-radius: 4px;
+			cursor: pointer;
+		}
+		#tx:hover{
+			border: 2px solid red;
+		}
+		#tq1{
+			width: 45px;
+			height: 45px;
+			position: absolute;
+			right: 11px;
+			top: 38px;
+			border-radius: 4px;
+			cursor: pointer;
+		}
+		#tq:hover{
+			border: 1px solid white;
+		}
+		#mp{
+			position: absolute;
+			right: 298px;
+			top: 0px;
+			display: none;
+			opacity: 0;
+			border: 1px solid #ccc;
+		}
+		#tq{
+			position: absolute;
+			right: -260px;
+			top: 0px;
+			display: none;
+			opacity: 0;
+		}
+	</style>
+</head>
+<body>
+	<div id="box">
+		<div id="con">
+			<div id="tx"></div>
+			<div id="tq1"></div>
+			<img id="mp" src="mp.jpg" alt="">
+			<img id="tq" src="tq.jpg" alt="">
+		</div>
+	</div>
+</body>
+<script type="text/javascript">
+	var con=document.getElementById('con');
+	var mp=document.getElementById('mp');
+	var tq=document.getElementById('tq');
+	var t=0;
+	var opa=0;
+	var time1=null,time2=null,time3=null,time4=null;
+	con.onmouseover=function  () {
+		mp.style.display='block';
+		tq.style.display='block';
+		clearTimeout(time4);
+		clearInterval(time2);
+		time3=setTimeout(function  () {
+			time1=setInterval(function  () {
+				t++;
+				opa+=(1/50);
+				if (t>=50) {
+					clearInterval(time1);
+				};
+				mp.style.top=t+"px";
+				mp.style.opacity=opa;
+				tq.style.top=t+"px";
+				tq.style.opacity=opa;
+			},10)
+		},1000)
+	}
+	con.onmouseout=function  () {
+		clearInterval(time1);
+		clearTimeout(time3);
+		time4=setTimeout(function  () {
+			time2=setInterval(function  () {
+				t--;
+				opa-=(1/50);
+				if (t<=0) {
+					clearInterval(time2);
+					mp.style.display="none";
+					tq.style.display="none";
+				};
+				mp.style.top=t+"px";
+				mp.style.opacity=opa;
+				tq.style.top=t+"px";
+				tq.style.opacity=opa;
+			},10)
+		},1000)
+	}
+</script>
+</html>
